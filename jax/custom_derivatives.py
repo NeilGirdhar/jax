@@ -22,7 +22,7 @@ from . import core
 from . import dtypes
 from . import linear_util as lu
 from .tree_util import (tree_flatten, tree_unflatten, tree_map, tree_multimap,
-                        register_pytree_node_class)
+                        register_pytree_node_class, Partial)
 from .util import cache, safe_zip, safe_map, split_list
 from .api_util import flatten_fun_nokwargs, argnums_partial, wrap_hashably
 from .core import raise_to_shaped
@@ -220,6 +220,12 @@ class custom_jvp:
         out_flat = custom_jvp_call_p.bind(flat_fun, flat_jvp, *args_flat)
         _, out_tree = lu.merge_linear_aux(out_tree1, out_tree2)
     return tree_unflatten(out_tree, out_flat)
+
+  def __get__(self, instance, owner=None):
+    if instance is None:
+        return self
+    # Create a partial function application corresponding to a bound method.
+    return Partial(self, instance)
 
 def _add_args(f, extra_args):
   return _add_args_(f, tuple(map(wrap_hashably, extra_args)))
@@ -501,6 +507,12 @@ class custom_vjp:
         fst, aux = lu.merge_linear_aux(out_tree, out_trees)
         out_tree = aux if fst else aux[0]
     return tree_unflatten(out_tree, out_flat)
+
+  def __get__(self, instance, owner=None):
+    if instance is None:
+        return self
+    # Create a partial function application corresponding to a bound method.
+    return Partial(self, instance)
 
 @partial(partial, tree_map)
 def _check_for_tracers(x):
