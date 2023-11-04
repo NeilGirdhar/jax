@@ -333,7 +333,7 @@ as the CI checks them:
 
 ```
 pip install mypy
-mypy --config=pyproject.toml --show-error-codes jax
+mypy
 ```
 
 Alternatively, you can use the [pre-commit](https://pre-commit.com/) framework to run this
