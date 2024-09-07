@@ -86,7 +86,7 @@ the `build/build.py` script itself will be processed by your system Python
 interpreter. By default, the wheel is written to the `dist/` subdirectory of the
 current directory.
 
-*  JAX versions starting from v.0.4.32: you can provide custom CUDA and CUDNN 
+*  JAX versions starting from v.0.4.32: you can provide custom CUDA and CUDNN
    versions in the configuration options. Bazel will download them and use as
    target dependencies.
 
@@ -257,8 +257,8 @@ together with their corresponding hashes are specified in
 `build/requirements_lock_<python version>.txt` files (
 e.g. `build/requirements_lock_3_12.txt` for `Python 3.12`).
 
-To update the lock files, make sure `build/requirements.in` contains the desired 
-direct dependencies list and then execute the following command (which will call 
+To update the lock files, make sure `build/requirements.in` contains the desired
+direct dependencies list and then execute the following command (which will call
 [pip-compile](https://pypi.org/project/pip-tools/) under the hood):
 
 ```
@@ -380,7 +380,7 @@ sudo apt-get install libopenblas-dev -y
    example for `Python 3.13` it should have something
    like `"3.13": "//build:requirements_lock_3_13.txt"`. Note, the key in the
    `requirements` parameter must always be in `"major.minor"` version format, so
-   even if you are building Python version `3.13.0rc1` the corresponding 
+   even if you are building Python version `3.13.0rc1` the corresponding
    `requirements` entry must still be `"3.13": "//build:requirements_lock_3_13.txt"`,
    **not** `"3.13.0rc1": "//build:requirements_lock_3_13_0rc1.txt"`.
 
@@ -513,11 +513,11 @@ bazel test //tests:gpu_tests //tests:backend_independent_tests --test_env=XLA_PY
 
 ### Using `pytest`
 First, install the dependencies by
-running `pip install -r build/test-requirements.txt`.
+running `uv sync --extra=test`.
 
 To run all the JAX tests using `pytest`, we recommend using `pytest-xdist`,
 which can run tests in parallel. It is installed as a part of
-`pip install -r build/test-requirements.txt` command.
+`uv sync --extra=test` command.
 
 From the repository root directory run:
 
