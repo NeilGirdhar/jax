@@ -1,7 +1,8 @@
 #
 # test deps
 #
--r test-requirements.txt
+# TODO: Can we do jax[test]?
+jax[test]
 -r gpu-test-requirements.txt
 
 #

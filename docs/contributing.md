@@ -44,8 +44,7 @@ Follow these steps to contribute code:
    ```bash
    git clone https://github.com/YOUR_USERNAME/jax
    cd jax
-   pip install -r build/test-requirements.txt  # Installs all testing requirements.
-   pip install -e ".[cpu]"  # Installs JAX from the current directory in editable mode.
+   pip install -e ".[cpu,test]"  # Installs JAX from the current directory in editable mode.
    ```
 
 5. Add the JAX repo as an upstream remote, so you can use it to sync your

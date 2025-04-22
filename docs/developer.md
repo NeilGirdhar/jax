@@ -441,7 +441,7 @@ bazel test <target>
   --repo_env=HERMETIC_REQUIREMENTS_LOCK="/absolute/path/to/build:custom_requirements_lock.txt"
 ```
 
-If default python interpreter is good enough for you and you just need a custom 
+If default python interpreter is good enough for you and you just need a custom
 set of dependencies:
 ```
 bazel test <target>
@@ -577,11 +577,11 @@ bazel test //tests:gpu_tests //tests:backend_independent_tests --test_env=XLA_PY
 
 ### Using `pytest`
 First, install the dependencies by
-running `pip install -r build/test-requirements.txt`.
+running `pip install .[test]`.
 
 To run all the JAX tests using `pytest`, we recommend using `pytest-xdist`,
 which can run tests in parallel. It is installed as a part of
-`pip install -r build/test-requirements.txt` command.
+`pip install .[test]` command.
 
 From the repository root directory run:
 
